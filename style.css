@@ -1,0 +1,314 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary-color: #007BFF;
+    --secondary-color: #0056b3;
+    --background-light: linear-gradient(135deg, #e0f7fa, #d1c4e9);
+    --background-dark: linear-gradient(135deg, #333, #555);
+    --form-bg: rgba(255, 255, 255, 0.9);
+    --form-bg-dark: rgba(50, 50, 50, 0.9);
+    --form-border-radius: 15px;
+    --box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    --box-shadow-hover: 0px 15px 30px rgba(0, 0, 0, 0.3);
+    --transition-duration: 0.4s;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    padding: 20px;
+    background: var(--background-light);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-duration) ease;
+    background-attachment: fixed;
+    color: #333;
+}
+
+body.dark-mode {
+    background: var(--background-dark);
+    color: #f5f5f5;
+}
+
+/* Form Container */
+form {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto 20px;
+    padding: 40px;
+    background-color: var(--form-bg);
+    border-radius: var(--form-border-radius);
+    box-shadow: var(--box-shadow);
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-duration) ease-in-out;
+    backdrop-filter: blur(12px);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+}
+
+form:hover {
+    transform: translateY(-7px);
+    box-shadow: var(--box-shadow-hover);
+}
+
+body.dark-mode form {
+    background-color: var(--form-bg-dark);
+}
+
+/* Form Heading */
+h1 {
+    color: #333;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    font-weight: 700;
+    grid-column: span 2;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 90px;
+    height: 5px;
+    background-color: var(--primary-color);
+    margin: 10px auto;
+    border-radius: 3px;
+}
+
+/* Input Fields */
+input, textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    transition: border-color var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
+    color: #333;
+    grid-column: span 2;
+    display: flex;
+}
+
+textarea {
+    resize: vertical;
+    height: 120px;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0px 0px 12px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Input Field Animations */
+input[data-icon]:before {
+    content: attr(data-icon);
+    position: absolute;
+    margin-left: 10px;
+    color: #aaa;
+    font-size: 1.2rem;
+    pointer-events: none;
+}
+
+/* Form Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 20px;
+}
+
+/* Button Styling */
+button {
+    padding: 15px 30px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: background-color var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
+    display: block;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* Button Ripple Effect */
+button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.3);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+button:active::after {
+    opacity: 1;
+    transition: none;
+}
+
+/* Button Loading Animation */
+button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+button:disabled:after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-top-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    right: 10px;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background var(--transition-duration) ease;
+}
+
+.dark-mode-toggle:hover {
+    background: #555;
+}
+
+/* Enhanced Dark Mode */
+body.dark-mode button {
+    background-color: #444;
+}
+
+body.dark-mode input, body.dark-mode textarea {
+    background-color: #555;
+    border-color: #888;
+    color: #fff;
+}
+
+body.dark-mode input:focus, body.dark-mode textarea:focus {
+    border-color: #ff6347;
+}
+
+/* Animation on Form Load */
+form {
+    animation: fadeIn var(--transition-duration) ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f0f4f8;
+}
+
+/* Advanced Form Validation */
+input:invalid {
+    border-color: #dc3545;
+    background-color: #ffe6e6;
+}
+
+input:valid {
+    border-color: #28a745;
+    background-color: #e6ffe6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    input, button {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    form {
+        padding: 20px;
+    }
+
+    input, button {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}
