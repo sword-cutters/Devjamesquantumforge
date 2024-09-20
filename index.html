@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Location-Based Reminder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <button class="dark-mode-toggle" id="darkModeToggle">Toggle Dark Mode</button>
+  
+  <div class="container">
+    <h1>Location-Based Reminder</h1>
+    <form id="reminderForm" class="grid">
+      <!-- Form fields using the updated grid system -->
+      <div class="form-field">
+        <label for="message">Reminder Message</label>
+        <input type="text" id="message" placeholder="Enter reminder message" required data-icon="✍️" />
+      </div>
+      
+      <div class="form-field">
+        <label for="location">Reminder Location</label>
+        <input type="text" id="location" placeholder="Enter reminder location" required data-icon="📍" />
+      </div>
+
+      <button type="submit" id="submitReminder">Set Reminder</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
